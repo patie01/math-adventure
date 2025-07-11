@@ -21,11 +21,11 @@ function checkAnswer() {
     score += 10; // 🎉 10 points for a correct answer
     document.getElementById("feedback").innerText = `✅ Correct! +10 points. Total: ${score}`;
     document.getElementById("score-display").innerText = score;
-    mascot.src = "brainstorm.jpg";
+    mascot.src = "funmath.jpg";
     correctSound.play();
   } else {
     document.getElementById("feedback").innerText = `❌ Oops! It was ${correctAnswer}. Total: ${score}`;
-    mascot.src = "brainstrom.jpg";
+    mascot.src = "funmath.jpg";
     wrongSound.play();
   }
 
