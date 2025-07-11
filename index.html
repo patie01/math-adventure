@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎲 Fun Math Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🎉 Math Adventure!</h1>
+  <img id="mascot" src="brainstorm.jpg" alt="Mascot" width="150">
+  <h3>🏆 Score: <span id="score-display">0</span></h3>
+  <div id="question-box"></div>
+  <input type="number" id="answer" placeholder="Your answer">
+  <button onclick="checkAnswer()">🎯 Submit</button>
+  <p id="feedback"></p>
+  <audio id="correct-sound" src="correct.mp3"></audio>
+  <audio id="wrong-sound" src="wrong.mp3"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
+
+STYLE.CSS
+
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-color: #fce8ff;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #ff1493;
+  font-size: 32px;
+}
+
+#question-box {
+  font-size: 28px;
+  margin: 20px;
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  font-size: 20px;
+  width: 120px;
+  border: 2px solid #ff69b4;
+  border-radius: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-left: 10px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#feedback {
+  font-size: 22px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+JAVASCRIPT
+
+let num1, num2, correctAnswer;
+let score = 0;
+
+function generateQuestion() {
+  num1 = Math.floor(Math.random() * 10) + 1;
+  num2 = Math.floor(Math.random() * 10) + 1;
+  correctAnswer = num1 + num2;
+  document.getElementById("question-box").innerText = `🍭 What is ${num1} + ${num2}?`;
+  document.getElementById("feedback").innerText = "";
+  document.getElementById("answer").value = "";
+  document.getElementById("mascot").src = "funmath.jpg";
+}
+
+function checkAnswer() {
+  const userAnswer = parseInt(document.getElementById("answer").value);
+  const mascot = document.getElementById("mascot");
+  const correctSound = document.getElementById("correct-sound");
+  const wrongSound = document.getElementById("wrong-sound");
+
+  if (userAnswer === correctAnswer) {
+    score += 10; // 🎉 10 points for a correct answer
+    document.getElementById("feedback").innerText = `✅ Correct! +10 points. Total: ${score}`;
+    document.getElementById("score-display").innerText = score;
+    mascot.src = "brainstorm.jpg";
+    correctSound.play();
+  } else {
+    document.getElementById("feedback").innerText = `❌ Oops! It was ${correctAnswer}. Total: ${score}`;
+    mascot.src = "brainstrom.jpg";
+    wrongSound.play();
+  }
+
+  setTimeout(generateQuestion, 2000);
+}
+generateQuestion();
+
+
